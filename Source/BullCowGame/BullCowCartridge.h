@@ -2,8 +2,8 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "Console/Cartridge.h"
+#include "./CoreMinimal.h"
+#include "./Console/Cartridge.h"
 #include "BullCowCartridge.generated.h"
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
@@ -14,8 +14,17 @@ class BULLCOWGAME_API UBullCowCartridge : public UCartridge
 	public:
 	virtual void BeginPlay() override;
 	virtual void OnInput(const FString& Input) override;
+	void InitGame();
+	void EndGame();
+	void CheckGuess(FString Guess);
+	bool IsIsogram(FString Word) const;
 
 	// Your declarations go below!
 	private:
-	
+	FString HiddenWord;
+
+	int32 Lives;
+	int32 Length;
+
+    bool bGameOver;
 };
